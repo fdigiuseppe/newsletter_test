@@ -18,11 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-	</script>
-
 </head>
 
 <body>
@@ -30,7 +25,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3" id="form_container">
 				<h1>Newsletter Test</h1>
-				<form role="form" method="post" id="reused_form">
+				<form role="form" method="post" id="nwl_form">
 
 					<div class="row">
 						<div class="col-sm-12 form-group">
@@ -66,41 +61,23 @@
 
 				</form>
 				<div id="success_message" style="width:100%; height:100%; text-align:center; display:none; ">
-					<h3>Posted your message successfully!</h3>
+					<h3>Messaggio inviato correttamente</h3>
 				</div>
 				<div id="error_message" style="width:100%; height:100%; text-align:center; display:none; ">
 					<h3>Error</h3>
-					Sorry there was an error sending your form.
-
+					C'e stato un errore nell'invio del msg
 				</div>
 			</div>
 		</div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+</script>
+<script src="./main.js"></script>
 	
 </body>
 
 </html>
 
-<?php
-
-error_reporting(-1);
-ini_set('display_errors', 'On');
-
-require_once ('./class_form.php');
-
-if (isset($_POST['submit'])) {
-	$f = new form();
-
-	$temp_address = explode(';', $_POST['email']); 
-	//echo count($temp_address);
-
-	foreach ($temp_address as $mail) {
-		$f->setForm($mail,$_POST['subject'],$_POST['message']);
-		$f->sendMail($f);
-	}
-
-}
-
-echo "fine";
-
-?>
